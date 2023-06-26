@@ -2,5 +2,6 @@
     <string name="app_name">databaseRoom</string>
     <string name="save">Сохранить</string>
     <string name="get">Получить значение </string>
+    <string name="menuBrain">Brain train </string>
 
 </resources>

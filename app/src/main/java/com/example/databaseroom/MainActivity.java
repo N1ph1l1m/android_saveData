@@ -1,9 +1,14 @@
 package com.example.databaseroom;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,4 +43,23 @@ public class MainActivity extends AppCompatActivity {
         pref = getSharedPreferences("Test" , MODE_PRIVATE);
         editSave = findViewById(R.id.editText);
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.brainActivity){
+            startActivity(new Intent(MainActivity.this, brainTrain.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
