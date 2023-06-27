@@ -23,6 +23,7 @@ public class brainTrain extends AppCompatActivity {
     private int number_1;
     private int number_2;
     private int number_false;
+    private int number_index;
     private int number_res;
     private int max  = 20;
     private int min = 0;
@@ -53,10 +54,20 @@ public class brainTrain extends AppCompatActivity {
     private void numbers(){
        number_1 = (int) (Math.random() * (max - min));
        number_2 = (int) (Math.random() * (max - min));
+
        number_false = (int) (Math.random() * (max1 - min1));
+       number_index = (int) (Math.random() * (5 - 1));
+
        number_res = number_1 + number_2;
        res.setText(String.valueOf(number_1));
-       main.setText(String.valueOf(number_2) );
+        String textNum;
+
+        if(number_index == 3 || number_index == 1 ){
+            textNum = number_1 + "+" + number_2 + "=" + number_res;
+        }else{
+            textNum = number_1 + "+" + number_2 + "=" + number_false;
+        }
+       main.setText(textNum);
 
     }
 
