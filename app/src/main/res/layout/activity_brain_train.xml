@@ -16,6 +16,7 @@
         android:backgroundTint="#FFFFFF"
         android:text="False"
         android:textColor="@color/black"
+        android:onClick="clickFalse"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,16 +33,17 @@
         android:text="True"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:onClick="clickTrue"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="TextView"
+        android:text="Question"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -56,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="136dp"
         android:text="1"
-
         android:textColor="#FDD835"
         android:textSize="30dp"
         android:textStyle="bold"
