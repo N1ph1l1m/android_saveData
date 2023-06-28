@@ -13,7 +13,9 @@ public class finalBrainActivity extends AppCompatActivity {
     private TextView textViewResult;
     private TextView textViewBestResult;
 
-
+    Intent intent = getIntent();
+    private  String res;
+    private  String timeres;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,20 @@ public class finalBrainActivity extends AppCompatActivity {
         textViewTitle = findViewById(R.id.textViewTitle);
         textViewResult = findViewById(R.id.textViewResult);
         textViewBestResult = findViewById(R.id.textViewBestResult);
+
+       Bundle arguments = getIntent().getExtras();
+
+        if(arguments!=null){
+            res = arguments.get("result").toString();
+            timeres = arguments.get("resultTime").toString();
+
+            textViewResult.setText(res);
+            textViewBestResult.setText(timeres);
+        }
+
     }
+
+
 
     public void toStartBrainActivity(View view) {
         Intent intent = new Intent(finalBrainActivity.this , StartBrain.class);

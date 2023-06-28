@@ -83,7 +83,10 @@ public class brainTrain extends AppCompatActivity {
         }
        main.setText(textNum);
         if(true_answer>=max_true_answer){
-        startActivity(new Intent(brainTrain.this, finalBrainActivity.class));
+            Intent intent = new Intent(this, finalBrainActivity.class);
+            intent.putExtra("result", true_answer);
+            intent.putExtra("resultTime", time_rerult);
+            startActivity(intent);
         }
     }
 
