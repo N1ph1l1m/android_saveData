@@ -34,7 +34,7 @@ public class brainTrain extends AppCompatActivity {
     private long cuttentTime = 0;
     private float time_rerult = 0.0f;
     private int true_answer = 0;
-    private int max_true_answer = 100;
+    private int max_true_answer = 10;
     private boolean is_true_answer = false;
 
     private final String save_key = "save_key";

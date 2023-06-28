@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.brainActivity){
-            startActivity(new Intent(MainActivity.this, brainTrain.class));
+            startActivity(new Intent(MainActivity.this, StartBrain.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
