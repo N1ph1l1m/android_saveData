@@ -1,65 +1,26 @@
 package com.example.databaseroom;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-
-    private SharedPreferences  pref;
-    private EditText editSave;
-    private final String setKey = "save_key";
-    private TextView getText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init();
-        getText = findViewById(R.id.getTextView);
+        setContentView(R.layout.activity_main2);
     }
 
-    public void save(View view) {
-        SharedPreferences.Editor edit = pref.edit();
-        edit.putString(setKey, editSave.getText().toString());
-        edit.apply();
+    public void moveToShared(View view) {
+        Intent intentShared = new Intent(MainActivity.this , SharedPreferences.class);
+        startActivity(intentShared);
     }
 
-    public void get(View view) {
-        getText.setText(pref.getString(setKey,"Text"));
+    public void moveToBrain(View view) {
+        Intent intentBrain = new Intent(MainActivity.this , StartBrain.class);
+        startActivity(intentBrain);
     }
-
-    private void init(){
-        pref = getSharedPreferences("Test" , MODE_PRIVATE);
-        editSave = findViewById(R.id.editText);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.brainActivity){
-            startActivity(new Intent(MainActivity.this, StartBrain.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 }
