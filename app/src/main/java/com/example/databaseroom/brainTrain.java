@@ -128,6 +128,12 @@ public class brainTrain extends AppCompatActivity {
         res.setText(String.valueOf(true_answer));
     }
 
+    @Override
+    public void onBackPressed() {
 
+        Intent intent = new Intent(this, StartBrain.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

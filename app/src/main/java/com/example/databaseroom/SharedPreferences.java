@@ -42,22 +42,11 @@ public class SharedPreferences extends AppCompatActivity {
         editSave = findViewById(R.id.editText);
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return true;
-    }
+    public void onBackPressed() {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.brainActivity){
-            startActivity(new Intent(SharedPreferences.this, StartBrain.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
-
 }

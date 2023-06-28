@@ -18,4 +18,12 @@ public class StartBrain extends AppCompatActivity {
     public void nextActivity(View view) {
         startActivity(new Intent(StartBrain.this, brainTrain.class));
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
