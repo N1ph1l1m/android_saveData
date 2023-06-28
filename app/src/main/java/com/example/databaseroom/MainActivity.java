@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sharedpreferences);
+        setContentView(R.layout.activity_main);
     }
 
     public void moveToShared(View view) {
@@ -22,5 +22,11 @@ public class MainActivity extends AppCompatActivity {
     public void moveToBrain(View view) {
         Intent intentBrain = new Intent(MainActivity.this , StartBrain.class);
         startActivity(intentBrain);
+    }
+
+    public void moveSQLiteActivity(View view) {
+        Intent intentSQLite = new Intent(MainActivity.this , Main_SQLite.class);
+        startActivity(intentSQLite);
+
     }
 }
