@@ -15,7 +15,8 @@ public class finalBrainActivity extends AppCompatActivity {
 
     Intent intent = getIntent();
     private  String res;
-    private  String timeres;
+    private  float timeres;
+    private float betsTimer = 3.333f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +30,17 @@ public class finalBrainActivity extends AppCompatActivity {
 
         if(arguments!=null){
             res = arguments.get("result").toString();
-            timeres = arguments.get("resultTime").toString();
+
+            timeres = (float) arguments.get("resultTime");
+            if(timeres > betsTimer) {
+                textViewBestResult.setText(String.valueOf(betsTimer));
+            }else{
+                textViewBestResult.setText(String.valueOf(timeres));
+                betsTimer = timeres;
+            }
 
             textViewResult.setText(res);
-            textViewBestResult.setText(timeres);
+
         }
 
     }

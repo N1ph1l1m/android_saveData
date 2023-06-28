@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,61 +8,137 @@
     tools:context=".finalBrainActivity">
 
 
-    <TextView
-        android:id="@+id/textViewTitle"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Game result "
-        android:textColor="@color/white"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewBestResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="304dp"
-        android:text="0"
-        android:textColor="#FDD835"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_marginLeft="70dp"
+            android:text="Game result "
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
-        android:text="0"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <Button
-        android:id="@+id/buttonPlay"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
-        android:onClick="toStartBrainActivity"
-        android:text="Home"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-        app:layout_constraintVertical_bias="0.739" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/answersRes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Answer result:           "
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="39dp" />
+            <TextView
+                android:id="@+id/textViewResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/answersTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Timer result:              "
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/textViewResultTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/answersBestTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Best Timer result:       "
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/textViewBestResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#FDD835"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="135dp"
+            android:id="@+id/buttonPlay"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:onClick="toStartBrainActivity"
+            android:text="Home"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>
