@@ -33,6 +33,9 @@ public class brainTrain extends AppCompatActivity {
     private long startTime = 0;
     private long cuttentTime = 0;
     private float time_rerult = 0.0f;
+    private int true_answer = 0;
+    private int max_true_answer = 100;
+    private boolean is_true_answer = false;
 
     private final String save_key = "save_key";
 
@@ -55,6 +58,8 @@ public class brainTrain extends AppCompatActivity {
         actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Question #1");
+        numbers();
+        res.setText(String.valueOf(true_answer));
     }
 
     private void numbers(){
@@ -65,28 +70,58 @@ public class brainTrain extends AppCompatActivity {
        number_index = (int) (Math.random() * (5 - 1));
 
        number_res = number_1 + number_2;
-       res.setText(String.valueOf(number_1));
+       //res.setText(String.valueOf(number_1));
         String textNum;
 
         if(number_index == 3 || number_index == 1 ){
             textNum = number_1 + "+" + number_2 + "=" + number_res;
+            is_true_answer = true;
         }else{
             textNum = number_1 + "+" + number_2 + "=" + number_false;
+            is_true_answer = false;
         }
        main.setText(textNum);
 
     }
 
-    public void clickTrue(View view) {
-        numbers();
-        cuttentTime = System.currentTimeMillis();
-        time_rerult = (float)(cuttentTime - startTime)/1000;
-        String time = "Time:" + time_rerult;
-        actionBar.setTitle(time);
-    }
+        public void clickTrue(View view) {
+
+        if(is_true_answer){
+
+            true_answer++;
+            numbers();
+            cuttentTime = System.currentTimeMillis();
+            time_rerult = (float)(cuttentTime - startTime)/1000;
+            String time = "Time:" + time_rerult;
+            actionBar.setTitle(time);
+        }else{
+            numbers();
+            cuttentTime = System.currentTimeMillis();
+            time_rerult = (float)(cuttentTime - startTime)/1000;
+            String time = "Time:" + time_rerult;
+            actionBar.setTitle(time);
+        }
+        res.setText(String.valueOf(true_answer));
+        }
 
     public void clickFalse(View view) {
+        if(!is_true_answer){
+            true_answer++;
+            numbers();
+            cuttentTime = System.currentTimeMillis();
+            time_rerult = (float)(cuttentTime - startTime)/1000;
+            String time = "Time:" + time_rerult;
+            actionBar.setTitle(time);
+        }else{
+            numbers();
+            cuttentTime = System.currentTimeMillis();
+            time_rerult = (float)(cuttentTime - startTime)/1000;
+            String time = "Time:" + time_rerult;
+            actionBar.setTitle(time);
+        }
+        res.setText(String.valueOf(true_answer));
     }
+
 
 
 }
