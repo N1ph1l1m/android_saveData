@@ -30,6 +30,10 @@ public class brainTrain extends AppCompatActivity {
 
     private int max1 = 40;
     private int min1 = 10;
+    private long startTime = 0;
+    private long cuttentTime = 0;
+    private float time_rerult = 0.0f;
+
     private final String save_key = "save_key";
 
     @Override
@@ -43,6 +47,8 @@ public class brainTrain extends AppCompatActivity {
     }
 
     private void init(){
+        startTime = System.currentTimeMillis();
+
         pref = getSharedPreferences("Test" , MODE_PRIVATE);
         res = findViewById(R.id.res);
         main = findViewById(R.id.main);
@@ -73,6 +79,10 @@ public class brainTrain extends AppCompatActivity {
 
     public void clickTrue(View view) {
         numbers();
+        cuttentTime = System.currentTimeMillis();
+        time_rerult = (float)(cuttentTime - startTime)/1000;
+        String time = "Time:" + time_rerult;
+        actionBar.setTitle(time);
     }
 
     public void clickFalse(View view) {
