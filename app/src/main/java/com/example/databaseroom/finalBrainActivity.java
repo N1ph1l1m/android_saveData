@@ -3,13 +3,13 @@ package com.example.databaseroom;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 public class finalBrainActivity extends AppCompatActivity {
 
-    private TextView textViewTitle;
     private TextView textViewResult;
 
     private TextView answersTimer;
@@ -18,13 +18,12 @@ public class finalBrainActivity extends AppCompatActivity {
     Intent intent = getIntent();
     private  String res;
     private  float timeres;
-    private float betsTimer = 23.333f;
+    private float betsTimer = 1.333f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_brain);
 
-        textViewTitle = findViewById(R.id.textViewTitle);
         textViewResult = findViewById(R.id.textViewResult);
         textViewBestResult = findViewById(R.id.textViewBestResult);
         answersTimer = findViewById(R.id.textViewResultTimer);
@@ -36,7 +35,6 @@ public class finalBrainActivity extends AppCompatActivity {
         if(arguments!=null){
             res = arguments.get("result").toString();
             textViewResult.setText(res);
-
             timeres = (float) arguments.get("resultTime");
             if(timeres < betsTimer) {
                 answersTimer.setText(String.valueOf(timeres));
@@ -44,6 +42,8 @@ public class finalBrainActivity extends AppCompatActivity {
                 textViewBestResult.setText(String.valueOf(betsTimer));
             }else{
                 answersTimer.setText(String.valueOf(timeres));
+                textViewBestResult.setText(String.valueOf(betsTimer));
+
             }
         }
 

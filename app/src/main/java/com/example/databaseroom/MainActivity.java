@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private SharedPreferences pref;
+    private SharedPreferences  pref;
     private EditText editSave;
     private final String setKey = "save_key";
     private TextView getText;
