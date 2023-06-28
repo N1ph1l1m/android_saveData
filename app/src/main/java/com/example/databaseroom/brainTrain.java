@@ -4,6 +4,7 @@ package com.example.databaseroom;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -81,7 +82,9 @@ public class brainTrain extends AppCompatActivity {
             is_true_answer = false;
         }
        main.setText(textNum);
-
+        if(true_answer>=max_true_answer){
+        startActivity(new Intent(brainTrain.this, finalBrainActivity.class));
+        }
     }
 
         public void clickTrue(View view) {

@@ -9,7 +9,6 @@ import android.view.View;
 
 public class StartBrain extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

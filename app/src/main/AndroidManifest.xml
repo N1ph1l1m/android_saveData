@@ -13,13 +13,18 @@
         android:theme="@style/Theme.DatabaseRoom"
         tools:targetApi="31">
         <activity
-            android:name=".StartBrain"
+            android:name=".finalBrainActivity"
             android:exported="false" />
+        <activity
+            android:name=".StartBrain"
+            android:exported="false"
+            android:label="Brain train"/>
         <activity
             android:name=".brainTrain"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:noHistory="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
