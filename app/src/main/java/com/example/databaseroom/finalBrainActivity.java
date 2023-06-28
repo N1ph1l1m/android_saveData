@@ -11,12 +11,14 @@ public class finalBrainActivity extends AppCompatActivity {
 
     private TextView textViewTitle;
     private TextView textViewResult;
+
+    private TextView answersTimer;
     private TextView textViewBestResult;
 
     Intent intent = getIntent();
     private  String res;
     private  float timeres;
-    private float betsTimer = 3.333f;
+    private float betsTimer = 23.333f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,23 +27,29 @@ public class finalBrainActivity extends AppCompatActivity {
         textViewTitle = findViewById(R.id.textViewTitle);
         textViewResult = findViewById(R.id.textViewResult);
         textViewBestResult = findViewById(R.id.textViewBestResult);
+        answersTimer = findViewById(R.id.textViewResultTimer);
+
+        textViewBestResult.setText(String.valueOf(betsTimer));
 
        Bundle arguments = getIntent().getExtras();
 
         if(arguments!=null){
             res = arguments.get("result").toString();
-
-            timeres = (float) arguments.get("resultTime");
-            if(timeres > betsTimer) {
-                textViewBestResult.setText(String.valueOf(betsTimer));
-            }else{
-                textViewBestResult.setText(String.valueOf(timeres));
-                betsTimer = timeres;
-            }
-
             textViewResult.setText(res);
 
+            timeres = (float) arguments.get("resultTime");
+            if(timeres < betsTimer) {
+                answersTimer.setText(String.valueOf(timeres));
+                betsTimer = timeres;
+                textViewBestResult.setText(String.valueOf(betsTimer));
+            }else{
+                answersTimer.setText(String.valueOf(timeres));
+            }
         }
+
+
+
+
 
     }
 
