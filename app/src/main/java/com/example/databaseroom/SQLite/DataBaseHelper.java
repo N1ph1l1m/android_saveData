@@ -29,7 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + COLUMN_NAME + " TEXT," + COLUMN_YEAR + " INTEGER);" );
 
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE + " (" + COLUMN_NAME + "," + COLUMN_YEAR + ") VALUES ('Tom Smith' , 1981);");
+//        sqLiteDatabase.execSQL("INSERT INTO " + TABLE + " (" + COLUMN_NAME + "," + COLUMN_YEAR + ") VALUES ('Tom Smith' , 1981);");
 
     }
 

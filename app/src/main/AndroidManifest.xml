@@ -13,9 +13,11 @@
         android:theme="@style/Theme.DatabaseRoom"
         tools:targetApi="31">
         <activity
-            android:name=".SQLite.SimpleExample"
+            android:name=".SQLite.UserActivity"
             android:exported="false" />
-        <!-- <activity -->
+        <activity
+            android:name=".SQLite.SimpleExample"
+            android:exported="false" /> <!-- <activity -->
         <!-- android:name=".Main_SQLite" -->
         <!-- android:label="DataBase" -->
         <!-- android:exported="false" /> -->

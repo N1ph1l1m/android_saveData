@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.databaseroom.SQLite.DataBaseHelper;
 import com.example.databaseroom.SQLite.SimpleExample;
+import com.example.databaseroom.SQLite.UserActivity;
 
 public class Main_SQLite extends AppCompatActivity {
 
@@ -31,7 +32,6 @@ public class Main_SQLite extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sqlite);
-        header = findViewById(R.id.header);
         userList = findViewById(R.id.list);
 
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
@@ -48,14 +48,16 @@ public class Main_SQLite extends AppCompatActivity {
 
         userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
                 userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2},0);
-        header.setText("Найдено элементов: " + userCursor.getCount());
         userList.setAdapter(userAdapter);
 
 
 
 
     }
-
+    public void addData(View view) {
+       Intent intent = new Intent(this , UserActivity.class);
+       startActivity(intent);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
