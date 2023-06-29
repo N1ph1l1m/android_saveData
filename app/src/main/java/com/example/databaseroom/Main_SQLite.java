@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -22,10 +23,10 @@ import com.example.databaseroom.SQLite.UserActivity;
 public class Main_SQLite extends AppCompatActivity {
 
     ListView userList;
-    TextView header;
     DataBaseHelper dataBaseHelper;
     SQLiteDatabase db;
     Cursor userCursor;
+
     SimpleCursorAdapter userAdapter;
 
     @Override
@@ -33,6 +34,14 @@ public class Main_SQLite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sqlite);
         userList = findViewById(R.id.list);
+        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
 
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
     }
@@ -72,6 +81,12 @@ public class Main_SQLite extends AppCompatActivity {
         return true;
     }
 
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+//        intent.putExtra("id", id);
+//        startActivity(intent);
+//    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -81,6 +96,7 @@ public class Main_SQLite extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onBackPressed() {

@@ -46,7 +46,7 @@ public class UserActivity extends AppCompatActivity {
             userId = extras.getLong("id");
         }
 
-        if(userId >0 ){
+        if(userId > 0 ){
             userCursor = db.rawQuery("SELECT * FROM " + DataBaseHelper.TABLE + " WHERE " + DataBaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(userId)});
             userCursor.moveToFirst();
             nameBox.setText(userCursor.getString(1));
