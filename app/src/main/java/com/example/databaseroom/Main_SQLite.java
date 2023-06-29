@@ -11,18 +11,56 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import com.example.databaseroom.SQLite.DataBaseHelper;
 import com.example.databaseroom.SQLite.SimpleExample;
 
 public class Main_SQLite extends AppCompatActivity {
 
+    ListView userList;
+    TextView header;
+    DataBaseHelper dataBaseHelper;
+    SQLiteDatabase db;
+    Cursor userCursor;
+    SimpleCursorAdapter userAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sqlite);
+        header = findViewById(R.id.header);
+        userList = findViewById(R.id.list);
 
+        dataBaseHelper = new DataBaseHelper(getApplicationContext());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        db = dataBaseHelper.getReadableDatabase();
+
+
+        userCursor = db.rawQuery(" SELECT * FROM  " + DataBaseHelper.TABLE , null);
+        String[] headers = new String[] {DataBaseHelper.COLUMN_NAME, DataBaseHelper.COLUMN_YEAR};
+
+        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
+                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2},0);
+        header.setText("Найдено элементов: " + userCursor.getCount());
+        userList.setAdapter(userAdapter);
+
+
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+        userCursor.close();
     }
 
     @Override
