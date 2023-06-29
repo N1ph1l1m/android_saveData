@@ -1,41 +1,46 @@
 package com.example.databaseroom;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.databaseroom.SQLite.SimpleExample;
+
 public class Main_SQLite extends AppCompatActivity {
 
-    private TextView  textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sqlite);
-        textView = findViewById(R.id.textView);
+
     }
-    public void onClickDB(View view) {
-        SQLiteDatabase db = getBaseContext().openOrCreateDatabase("app.db",MODE_PRIVATE,null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS users(name TEXT, age INTEGER, UNIQUE(name))");
-        db.execSQL("INSERT OR IGNORE INTO users VALUES ('TOM Smith',23),('John Dow',32);");
-        Cursor query = db.rawQuery("SELECT * FROM users;",null);
-        textView.setText("");
-        while(query.moveToNext()){
-            String name = query.getString(0);
-            int age = query.getInt(1);
-            textView.append("Name: " + name +"\n"+ "Age:" + age +"\n");
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.dataBase1){
+            startActivity(new Intent(this, SimpleExample.class));
+            return true;
         }
-        query.close();
-        db.close();
-
-
+        return super.onOptionsItemSelected(item);
     }
-
-
 
     @Override
     public void onBackPressed() {

@@ -4,7 +4,7 @@
 
 
     <item
-        android:id="@+id/brainActivity"
-        android:title="@string/menuBrain"
+        android:id="@+id/dataBase1"
+        android:title="Simple example"
        />
 </menu>
