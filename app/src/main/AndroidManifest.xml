@@ -7,16 +7,19 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Project data"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DatabaseRoom"
         tools:targetApi="31">
-        <activity
-            android:name=".Main_SQLite"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Main_SQLite"-->
+<!--            android:label="DataBase"-->
+<!--            android:exported="false" />-->
+
         <activity
             android:name=".SharedPreferences"
+            android:label="Shared preferences"
             android:exported="false" />
         <activity
             android:name=".finalBrainActivity"
@@ -30,6 +33,11 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:label="Project data"
+            android:exported="false" />
+        <activity
+            android:name=".Main_SQLite"
+            android:label="DataBase"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
