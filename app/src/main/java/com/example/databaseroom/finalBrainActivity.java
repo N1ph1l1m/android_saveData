@@ -18,7 +18,7 @@ public class finalBrainActivity extends AppCompatActivity {
     Intent intent = getIntent();
     private  String res;
     private  float timeres;
-    private float betsTimer = 1.333f;
+    private float betsTimer = 10.333f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +46,6 @@ public class finalBrainActivity extends AppCompatActivity {
 
             }
         }
-
-
-
-
 
     }
 

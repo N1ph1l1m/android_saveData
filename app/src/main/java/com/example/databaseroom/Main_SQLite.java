@@ -61,7 +61,6 @@ public class Main_SQLite extends AppCompatActivity {
 
 
 
-
     }
     public void addData(View view) {
        Intent intent = new Intent(this , UserActivity.class);

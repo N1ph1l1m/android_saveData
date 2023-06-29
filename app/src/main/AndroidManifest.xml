@@ -17,10 +17,11 @@
             android:exported="false" />
         <activity
             android:name=".SQLite.SimpleExample"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".Main_SQLite" -->
-        <!-- android:label="DataBase" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
+        <activity
+        android:name=".Main_SQLite"
+         android:label="DataBase"
+        android:exported="false" />
         <activity
             android:name=".SharedPreferences"
             android:exported="false"
@@ -35,12 +36,12 @@
         <activity
             android:name=".brainTrain"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="false"-->
+<!--            android:label="Project data" />-->
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:label="Project data" />
-        <activity
-            android:name=".Main_SQLite"
             android:exported="true"
             android:label="DataBase"
             android:noHistory="true">
