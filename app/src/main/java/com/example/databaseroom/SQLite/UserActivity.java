@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.INotificationSideChannel;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +38,7 @@ public class UserActivity extends AppCompatActivity {
         delButton = findViewById(R.id.deleteButton);
 
         sqlHelper = new DataBaseHelper(this);
-        db = sqlHelper.getWritableDatabase();
+        db = sqlHelper.open();
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
@@ -47,7 +46,7 @@ public class UserActivity extends AppCompatActivity {
         }
 
         if(userId > 0 ){
-            userCursor = db.rawQuery("SELECT * FROM " + DataBaseHelper.TABLE + " WHERE " + DataBaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(userId)});
+            userCursor = db.rawQuery("SELECT * FROM " + DataBaseHelper.TABLE_CARS + " WHERE " + DataBaseHelper.COLUMN_CARS_ID + "=?", new String[]{String.valueOf(userId)});
             userCursor.moveToFirst();
             nameBox.setText(userCursor.getString(1));
             yearBox.setText(String.valueOf(userCursor.getInt(2)));
@@ -59,26 +58,27 @@ public class UserActivity extends AppCompatActivity {
 
     public void save(View view) {
         ContentValues cv = new ContentValues();
-        cv.put(DataBaseHelper.COLUMN_NAME,nameBox.getText().toString());
-        cv.put(DataBaseHelper.COLUMN_YEAR,Integer.parseInt(yearBox.getText().toString()));
+        cv.put(DataBaseHelper.COLUMN_CARS_NAME,nameBox.getText().toString());
+        cv.put(DataBaseHelper.COLUMN_CARS_SPEED,Integer.parseInt(yearBox.getText().toString()));
 
         if(userId > 0){
-            db.update(DataBaseHelper.TABLE, cv, DataBaseHelper.COLUMN_ID + "=" + userId , null);
+            db.update(DataBaseHelper.TABLE_CARS, cv, DataBaseHelper.COLUMN_CARS_ID + "=" + userId , null);
         }else{
-            db.insert(DataBaseHelper.TABLE, null , cv);
+            db.insert(DataBaseHelper.TABLE_CARS, null , cv);
         }
         goHome();
 
     }
 
     public void delete(View view) {
-        db.delete(DataBaseHelper.TABLE, "_id = ?", new String[]{String.valueOf(userId)});
+        db.delete(DataBaseHelper.TABLE_CARS, "id = ?", new String[]{String.valueOf(userId)});
         goHome();
     }
 
 
     private void goHome() {
         db.close();
+
         Intent intent = new Intent(this, Main_SQLite.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

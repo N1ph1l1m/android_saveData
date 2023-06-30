@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
 import com.example.databaseroom.SQLite.DataBaseHelper;
 import com.example.databaseroom.SQLite.SimpleExample;
@@ -33,6 +32,7 @@ public class Main_SQLite extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sqlite);
+
         userList = findViewById(R.id.list);
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -44,16 +44,17 @@ public class Main_SQLite extends AppCompatActivity {
         });
 
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
+        dataBaseHelper.create_db();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        db = dataBaseHelper.getReadableDatabase();
+        db = dataBaseHelper.open();
 
-
-        userCursor = db.rawQuery(" SELECT * FROM  " + DataBaseHelper.TABLE , null);
-        String[] headers = new String[] {DataBaseHelper.COLUMN_NAME, DataBaseHelper.COLUMN_YEAR};
+        userCursor = db.rawQuery(" SELECT * FROM  " + DataBaseHelper.TABLE_CARS , null);
+        String[] headers = new String[] {DataBaseHelper.COLUMN_CARS_NAME, DataBaseHelper.COLUMN_CARS_SPEED};
 
         userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
                 userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2},0);
