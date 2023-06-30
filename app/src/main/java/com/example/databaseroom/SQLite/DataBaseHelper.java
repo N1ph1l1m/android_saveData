@@ -27,7 +27,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private  static final int SCHEME_CARS = 1;
     public static final String TABLE_CARS = "cars";
 
-    public  static final  String COLUMN_CARS_ID = "id";
+    public  static final  String COLUMN_CARS_ID = "_id";
     public static final String COLUMN_CARS_NAME = "name";
     public static final String COLUMN_CARS_SPEED = "speed";
     private  Context context;
