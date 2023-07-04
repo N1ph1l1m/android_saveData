@@ -1,5 +1,7 @@
 package com.example.databaseroom.Model;
 
+import androidx.annotation.NonNull;
+
 public class User {
     private long id;
     private String name;
@@ -33,5 +35,10 @@ public class User {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + ":" + this.year;
     }
 }

@@ -4,17 +4,15 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 public class DB_helper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "userstore.db";
     private static final int SCHEMA = 1;
 
     static final String TABLE = "users";
 
-    public static final String COLUME_ID = "_id";
-    public static final String COLUME_NAME = "name";
-    public static final String COLUME_YEAR = "year";
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_YEAR = "year";
 
 
 
@@ -24,9 +22,9 @@ public class DB_helper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(" CREATE  TABLE " + TABLE + "(" + COLUME_ID +
+        sqLiteDatabase.execSQL(" CREATE  TABLE " + TABLE + "(" + COLUMN_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUME_NAME + " TEXT," + COLUME_YEAR + " INTEGER);" );
+                COLUMN_NAME + " TEXT," + COLUMN_YEAR + " INTEGER);" );
     }
 
     @Override
