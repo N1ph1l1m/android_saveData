@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.databaseroom.MainActivity;
-import com.example.databaseroom.Main_SQLite;
 import com.example.databaseroom.R;
 
 public class SimpleExample extends AppCompatActivity {

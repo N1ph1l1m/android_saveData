@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.databaseroom.BrainTrain.StartBrain;
+import com.example.databaseroom.SQLite.Main_SQLite;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

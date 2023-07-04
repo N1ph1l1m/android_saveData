@@ -1,10 +1,13 @@
-package com.example.databaseroom;
+package com.example.databaseroom.BrainTrain;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.databaseroom.MainActivity;
+import com.example.databaseroom.R;
 
 
 public class StartBrain extends AppCompatActivity {

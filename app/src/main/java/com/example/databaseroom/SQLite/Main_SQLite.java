@@ -1,4 +1,4 @@
-package com.example.databaseroom;
+package com.example.databaseroom.SQLite;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.example.databaseroom.MainActivity;
+import com.example.databaseroom.R;
 import com.example.databaseroom.SQLite.DataBaseHelper;
 import com.example.databaseroom.SQLite.SimpleExample;
 import com.example.databaseroom.SQLite.UserActivity;

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.databaseroom.Main_SQLite;
 import com.example.databaseroom.R;
 
 public class UserActivity extends AppCompatActivity {

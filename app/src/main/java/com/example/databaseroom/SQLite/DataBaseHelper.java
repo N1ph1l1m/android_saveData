@@ -37,13 +37,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, SCHEME_CARS);
-        this.context =context;
+        this.context = context;
         DB_PATH = context.getFilesDir().getPath() + DB_PATH;
     }
-
-
-
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 

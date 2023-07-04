@@ -21,7 +21,7 @@
             android:name=".SQLite.SimpleExample"
             android:exported="false" />
         <activity
-        android:name=".Main_SQLite"
+        android:name=".SQLite.Main_SQLite"
          android:label="DataBase"
         android:exported="false" />
         <activity
@@ -29,14 +29,14 @@
             android:exported="false"
             android:label="Shared preferences" />
         <activity
-            android:name=".finalBrainActivity"
+            android:name=".BrainTrain.finalBrainActivity"
             android:exported="false" />
         <activity
-            android:name=".StartBrain"
+            android:name=".BrainTrain.StartBrain"
             android:exported="false"
             android:label="Brain train" />
         <activity
-            android:name=".brainTrain"
+            android:name=".BrainTrain.brainTrain"
             android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".MainActivity"-->
