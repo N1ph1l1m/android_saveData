@@ -77,7 +77,6 @@ public class UserActivity extends AppCompatActivity {
 
     private void goHome() {
         db.close();
-
         Intent intent = new Intent(this, Main_SQLite.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

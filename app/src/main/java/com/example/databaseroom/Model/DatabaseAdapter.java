@@ -64,7 +64,7 @@ public class DatabaseAdapter {
 //        }
 //        cursor.close();
 //        return user;
-     }
+     //}
 
 //     public  long insert(User user){
 //         ContentValues cv = new ContentValues();

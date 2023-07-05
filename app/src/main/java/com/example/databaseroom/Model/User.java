@@ -12,6 +12,10 @@ public class User {
         this.name = name;
         this.year = year;
     }
+    public User(String name, int year) {
+        this.name = name;
+        this.year = year;
+    }
 
     public User() {
     }
