@@ -53,37 +53,37 @@ public class DatabaseAdapter {
     }
 
 
-    public User getUser(long id){
-        User user = null;
-        String query = String.format(" SELECT * FROM %s WHERE %s=?" , Util.TABLE_NAME, Util.COLUMN_ID );
-        Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(id)});
-        if(cursor.moveToFirst()){
-            String name = cursor.getString(cursor.getColumnIndex(Util.COLUMN_NAME));
-            int year = cursor.getInt(cursor.getColumnIndex(Util.COLUMN_YEAR));
-            user = new User(id,name,year);
-        }
-        cursor.close();
-        return user;
+//    public User getUser(long id){
+//        User user = null;
+//        String query = String.format(" SELECT * FROM %s WHERE %s=?" , Util.TABLE_NAME, Util.COLUMN_ID );
+//        Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(id)});
+//        if(cursor.moveToFirst()){
+//            String name = cursor.getString(cursor.getColumnIndex(Util.COLUMN_NAME));
+//            int year = cursor.getInt(cursor.getColumnIndex(Util.COLUMN_YEAR));
+//            user = new User(id,name,year);
+//        }
+//        cursor.close();
+//        return user;
      }
 
-     public  long insert(User user){
-         ContentValues cv = new ContentValues();
-         cv.put(Util.COLUMN_NAME,user.getName());
-         cv.put(Util.COLUMN_YEAR,user.getYear());
-         return database.insert(Util.TABLE_NAME, null , cv);
-     }
-     public long delete(long userId){
-        String whereClause = "_id = ?";
-        String[] whereArgs = new String[]{String.valueOf(userId)};
-        return  database.delete(Util.TABLE_NAME, whereClause,whereArgs);
-     }
-     public long update(User user){
-        String whereClause = Util.COLUMN_ID + "=" + user.getId();
-        ContentValues cv = new ContentValues();
-        cv.put(Util.COLUMN_NAME, user.getName());
-        cv.put(Util.COLUMN_YEAR, user.getYear());
-        return database.update(Util.TABLE_NAME , cv , whereClause , null);
-     }
+//     public  long insert(User user){
+//         ContentValues cv = new ContentValues();
+//         cv.put(Util.COLUMN_NAME,user.getName());
+//         cv.put(Util.COLUMN_YEAR,user.getYear());
+//         return database.insert(Util.TABLE_NAME, null , cv);
+//     }
+//     public long delete(long userId){
+//        String whereClause = "_id = ?";
+//        String[] whereArgs = new String[]{String.valueOf(userId)};
+//        return  database.delete(Util.TABLE_NAME, whereClause,whereArgs);
+//     }
+//     public long update(User user){
+//        String whereClause = Util.COLUMN_ID + "=" + user.getId();
+//        ContentValues cv = new ContentValues();
+//        cv.put(Util.COLUMN_NAME, user.getName());
+//        cv.put(Util.COLUMN_YEAR, user.getYear());
+//        return database.update(Util.TABLE_NAME , cv , whereClause , null);
+//     }
 
 
 }
