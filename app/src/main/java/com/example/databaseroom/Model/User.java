@@ -13,6 +13,9 @@ public class User {
         this.year = year;
     }
 
+    public User() {
+    }
+
     public long getId() {
         return id;
     }

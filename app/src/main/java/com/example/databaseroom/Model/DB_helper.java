@@ -5,12 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DB_helper extends SQLiteOpenHelper {
-
-
-
-
     public DB_helper(Context context) {
         super(context, Util.DATABASE_NAME, null ,Util.SCHEMA);
     }
@@ -38,6 +37,7 @@ public class DB_helper extends SQLiteOpenHelper {
         db.insert(Util.TABLE_NAME,null,cv);
         db.close();
     }
+
     public User getUser(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -51,5 +51,23 @@ public class DB_helper extends SQLiteOpenHelper {
         }
         User user = new User(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getInt(2));
         return user;
+    }
+
+    public List<User> getAllUser(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<User> userList = new ArrayList<>();
+        String selectAllUser = "SELECT * FROM " + Util.TABLE_NAME;
+        Cursor cursor = db.rawQuery(selectAllUser,null);
+        if(cursor.moveToFirst()){
+            do{
+                User user = new User();
+                user.setId(Integer.parseInt(cursor.getString(0)));
+                user.setName(cursor.getString(1));
+                user.setName(cursor.getString(2));
+
+                userList.add(user);
+            }while (cursor.moveToNext());
+        }
+        return userList;
     }
 }

@@ -11,46 +11,46 @@ import java.util.List;
 
 public class DatabaseAdapter {
 
-    private DB_helper dataBaseHelper;
-    private SQLiteDatabase database;
+//    private DB_helper dataBaseHelper;
+//    private SQLiteDatabase database;
+//
+//    public DatabaseAdapter(Context context){
+//        dataBaseHelper = new DB_helper(context.getApplicationContext());
+//    }
+//
+//    public  DatabaseAdapter open (){
+//        database = dataBaseHelper.getWritableDatabase();
+//        return this;
+//    }
+//    public void close(){
+//        dataBaseHelper.close();
+//    }
 
-    public DatabaseAdapter(Context context){
-        dataBaseHelper = new DB_helper(context.getApplicationContext());
-    }
+//    public Cursor getAllEntries(){
+//        String[] columns = new String[]{Util.COLUMN_ID,Util.COLUMN_NAME,Util.TABLE_NAME};
+//        return  database.query(Util.TABLE_NAME, columns,
+//                null,
+//                null,
+//                null,
+//                null,
+//                null);
+//    }
+//     public List<User>getUsers(){
+//         ArrayList<User> users = new ArrayList<>();
+//         Cursor cursor = getAllEntries();
+//         while(cursor.moveToNext()){
+//             int id = cursor.getInt(cursor.getColumnIndex(Util.COLUMN_ID));
+//             String name = cursor.getString(cursor.getColumnIndex(Util.COLUMN_NAME));
+//             int year = cursor.getInt(cursor.getColumnIndex(Util.COLUMN_YEAR));
+//            users.add(new User(id,name,year));
+//         }
+//         cursor.close();
+//         return users;
+//     }
 
-    public  DatabaseAdapter open (){
-        database = dataBaseHelper.getWritableDatabase();
-        return this;
-    }
-    public void close(){
-        dataBaseHelper.close();
-    }
-
-    public Cursor getAllEntries(){
-        String[] columns = new String[]{Util.COLUMN_ID,Util.COLUMN_NAME,Util.TABLE_NAME};
-        return  database.query(Util.TABLE_NAME, columns,
-                null,
-                null,
-                null,
-                null,
-                null);
-    }
-     public List<User>getUsers(){
-         ArrayList<User> users = new ArrayList<>();
-         Cursor cursor = getAllEntries();
-         while(cursor.moveToNext()){
-             int id = cursor.getInt(cursor.getColumnIndex(Util.COLUMN_ID));
-             String name = cursor.getString(cursor.getColumnIndex(Util.COLUMN_NAME));
-             int year = cursor.getInt(cursor.getColumnIndex(Util.COLUMN_YEAR));
-            users.add(new User(id,name,year));
-         }
-         cursor.close();
-         return users;
-     }
-
-    public long getCount(){
-        return DatabaseUtils.queryNumEntries(database, Util.TABLE_NAME);
-    }
+//    public long getCount(){
+//        return DatabaseUtils.queryNumEntries(database, Util.TABLE_NAME);
+//    }
 
 
 //    public User getUser(long id){

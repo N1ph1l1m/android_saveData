@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.databaseroom.BrainTrain.StartBrain;
+import com.example.databaseroom.Model.Model;
 import com.example.databaseroom.SQLite.Main_SQLite;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     public void moveSQLiteActivity(View view) {
         Intent intentSQLite = new Intent(MainActivity.this , Main_SQLite.class);
         startActivity(intentSQLite);
-
+    }
+    public void moveToModal(View view) {
+        Intent intentSQLite = new Intent(MainActivity.this , Model.class);
+        startActivity(intentSQLite);
     }
 }
