@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 public class DatabaseHelper  extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "userstore.db";
     private static final int SCHEMA=1;
-    static final String TABLE = "users";
+    static final String TABLE = "user";
 
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
@@ -27,7 +27,8 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         db.execSQL(" CREATE TABLE " + TABLE + "(" + COLUMN_ID
         + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + "TEXT, " + COLUMN_YEAR + " INTEGER);");
 
-        db.execSQL(" INSERT INTO " + TABLE + "( " + COLUMN_NAME + "," +COLUMN_NAME + ") VALUES ('Tom Smith',1981);" );
+        db.execSQL(" INSERT INTO "+ TABLE +" (" + COLUMN_NAME
+                + ", " + COLUMN_YEAR  + ") VALUES ('Том Смит', 1981);");
     }
 
     @Override

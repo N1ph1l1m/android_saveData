@@ -37,9 +37,9 @@ public class DatabaseAdapter {
         ArrayList<User> users = new ArrayList<>();
         Cursor cursor = getAllEntries();
         while (cursor.moveToNext()){
-            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
-            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
-            @SuppressLint("Range") int year = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_YEAR));
+          int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
+        String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+       int year = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_YEAR));
             users.add(new User(id, name, year));
         }
         cursor.close();
@@ -55,8 +55,8 @@ public class DatabaseAdapter {
         String query = String.format("SELECT * FROM %s WHERE %s=?",DatabaseHelper.TABLE, DatabaseHelper.COLUMN_ID);
         Cursor cursor = database.rawQuery(query, new String[]{ String.valueOf(id)});
         if(cursor.moveToFirst()){
-            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
-            @SuppressLint("Range") int year = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_YEAR));
+          String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+          int year = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_YEAR));
             user = new User(id, name, year);
         }
         cursor.close();
