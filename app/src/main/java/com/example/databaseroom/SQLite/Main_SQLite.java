@@ -36,14 +36,14 @@ public class Main_SQLite extends AppCompatActivity {
         setContentView(R.layout.activity_main_sqlite);
 
         userList = findViewById(R.id.list);
-        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-                intent.putExtra("id", id);
-                startActivity(intent);
-            }
-        });
+//        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+//                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+//                intent.putExtra("id", id);
+//                startActivity(intent);
+//            }
+//        });
 
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         dataBaseHelper.create_db();
@@ -103,7 +103,7 @@ public class Main_SQLite extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Main_SQLite.class);
         startActivity(intent);
         finish();
     }

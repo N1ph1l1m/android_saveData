@@ -23,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 //    public static final String COLUMN_YEAR = "year";
 
     private static String DB_PATH;
-    private static final String DB_NAME = "Cars.db";
+    private static final String DB_NAME = "Ñars.db";
     private  static final int SCHEME_CARS = 1;
     public static final String TABLE_CARS = "cars";
 
@@ -42,13 +42,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
-//        sqLiteDatabase.execSQL("CREATE TABLE users("
-//                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-//                + COLUMN_NAME + " TEXT," + COLUMN_YEAR + " INTEGER);" );
-//
-//
-////        sqLiteDatabase.execSQL("INSERT INTO " + TABLE + " (" + COLUMN_NAME + "," + COLUMN_YEAR + ") VALUES ('Tom Smith' , 1981);");
 
     }
 

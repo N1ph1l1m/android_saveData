@@ -8,6 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -17,67 +19,53 @@ import android.widget.TextView;
 import com.example.databaseroom.MainActivity;
 import com.example.databaseroom.R;
 import com.example.databaseroom.SQLite.DataBaseHelper;
+import com.example.databaseroom.SQLite.UserActivity;
 
 import java.util.List;
 
 public class Model extends AppCompatActivity {
 
-    ListView userList;
-    SimpleCursorAdapter userAdapter;
-    SQLiteDatabase db;
-    Cursor userCursor;
-    //User user;
-    //Cursor cursor;
-    DB_helper dataBaseHelper;
-    long userId = 0;
+    private ListView userList;
+    ArrayAdapter<User> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_model);
-//        textView = findViewById(R.id.nameView);
+
+
         userList = findViewById(R.id.list2);
-//        DB_helper database = new DB_helper(this);
-//        database.addUser(new User("Bruce Waine", 35));
-//        database.addUser(new User("Bruce Waine", 36));
-//        database.addUser(new User("Bruce Waine", 37));
-//        database.addUser(new User("Bruce Waine", 38));
-//        Bundle extras = getIntent().getExtras();
-//        if(extras != null){
-//            userId = extras.getLong("id");
-//        }
-//
-////    try {
-//        if(userId>0){
-//            String name = String.valueOf(database.getUser(1));
-//            textView.setText(name);
-//            database.close();
-//        }
-////    }catch (Exception e){
-////        Log.d("ErData", String.valueOf(e));
-////    }
-        dataBaseHelper = new DB_helper(getApplicationContext());
-        dataBaseHelper.createDB();
 
-
-
+        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User user = arrayAdapter.getItem(position);
+                if (user != null) {
+                    Intent intent = new Intent(getApplicationContext(), user_activity2.class);
+                    intent.putExtra("id", user.getId());
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
+
     @Override
-    protected void onResume() {
-        try{
-            super.onResume();
-            db = dataBaseHelper.open();
+    public void onResume() {
+        super.onResume();
+        DatabaseAdapter adapter = new DatabaseAdapter(this);
+        adapter.open();
 
-            userCursor = db.rawQuery(" SELECT * FROM  " + Util.TABLE_NAME , null);
+        List<User> users = adapter.getUsers();
 
-            String[] headers = new String[] {Util.COLUMN_NAME, Util.COLUMN_YEAR};
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
+        userList.setAdapter(arrayAdapter);
+        adapter.close();
+    }
 
-            userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
-                    userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2},0);
-            userList.setAdapter(userAdapter);
-        }catch (Exception e){
-            Log.d("ErrU", String.valueOf(e));
-        }
+    // по нажатию на кнопку запускаем UserActivity для добавления данных
+    public void add(View view){
+        Intent intent = new Intent(this, user_activity2.class);
+        startActivity(intent);
     }
 
 

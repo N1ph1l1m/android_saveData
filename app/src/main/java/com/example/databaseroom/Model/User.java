@@ -7,27 +7,14 @@ public class User {
     private String name;
     private int year;
 
-    public User(long id, String name, int year) {
+    User(long id, String name, int year){
         this.id = id;
         this.name = name;
         this.year = year;
     }
-    public User(String name, int year) {
-        this.name = name;
-        this.year = year;
-    }
-
-    public User() {
-    }
-
     public long getId() {
         return id;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -46,6 +33,6 @@ public class User {
 
     @Override
     public String toString() {
-        return this.name + ":" + this.year;
+        return this.name + " : " + this.year;
     }
 }
