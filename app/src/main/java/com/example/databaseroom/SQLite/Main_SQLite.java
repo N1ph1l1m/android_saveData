@@ -27,7 +27,6 @@ public class Main_SQLite extends AppCompatActivity {
     DataBaseHelper dataBaseHelper;
     SQLiteDatabase db;
     Cursor userCursor;
-
     SimpleCursorAdapter userAdapter;
 
     @Override
@@ -36,14 +35,14 @@ public class Main_SQLite extends AppCompatActivity {
         setContentView(R.layout.activity_main_sqlite);
 
         userList = findViewById(R.id.list);
-//        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-//                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-//                intent.putExtra("id", id);
-//                startActivity(intent);
-//            }
-//        });
+        userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
 
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         dataBaseHelper.create_db();
@@ -61,9 +60,6 @@ public class Main_SQLite extends AppCompatActivity {
         userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
                 userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2},0);
         userList.setAdapter(userAdapter);
-
-
-
     }
     public void addData(View view) {
        Intent intent = new Intent(this , UserActivity.class);
@@ -83,11 +79,11 @@ public class Main_SQLite extends AppCompatActivity {
         return true;
     }
 
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-//        intent.putExtra("id", id);
-//        startActivity(intent);
-//    }
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -103,7 +99,7 @@ public class Main_SQLite extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(this, Main_SQLite.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
