@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,7 @@ public class user_activity2 extends AppCompatActivity {
     private Button delButton;
 
     private DatabaseAdapter adapter;
-    private long userId=0;
+    private long userId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +49,25 @@ public class user_activity2 extends AppCompatActivity {
         }
     }
 
-    public void save(View view){
 
+    public  void save (View view){
         String name = nameBox.getText().toString();
-        int year = Integer.parseInt(yearBox.getText().toString());
+        String yearText = yearBox.getText().toString();
+
+        // Проверка на пустое значение или некорректный формат года
+        if (yearText.isEmpty()) {
+            // Вывести сообщение об ошибке или выполнить необходимые действия
+            return; // Завершить метод без сохранения
+        }
+
+        int year;
+        try {
+            year = Integer.parseInt(yearText);
+        } catch (NumberFormatException e) {
+            Log.d("Er","Not int");
+            return; // Завершить метод без сохранения
+        }
+
         User user = new User(userId, name, year);
 
         adapter.open();
@@ -62,7 +78,10 @@ public class user_activity2 extends AppCompatActivity {
         }
         adapter.close();
         goHome();
+
     }
+
+
     public void delete(View view){
 
         adapter.open();
@@ -72,7 +91,7 @@ public class user_activity2 extends AppCompatActivity {
     }
     private void goHome(){
         // переход к главной activity
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Model.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

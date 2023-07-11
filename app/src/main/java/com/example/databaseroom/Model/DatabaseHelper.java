@@ -24,17 +24,21 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL(" CREATE TABLE " + TABLE + "(" + COLUMN_ID
-        + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_YEAR + " TEXT);");
+                + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_YEAR + " TEXT);");
 
-//        db.execSQL(" INSERT INTO "+ TABLE +" (" + COLUMN_NAME
-//                + ", " + COLUMN_YEAR  + ") VALUES ('Том Смит', 1981);");
+        db.execSQL(" INSERT INTO "+ TABLE +" (" + COLUMN_NAME
+                + ", " + COLUMN_YEAR  + ") VALUES ('Том Смит', 1981);");
+
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
         db.execSQL("DROP TABLE IF EXISTS " + TABLE);
         onCreate(db);
+
     }
 }
+
+
+
