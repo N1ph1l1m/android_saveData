@@ -62,40 +62,70 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void delete(View view) {
-        db.delete(DataBaseHelper.TABLE_CARS, "_id = ?", new String[]{String.valueOf(userId)});
+        adapter.open();
+        adapter.delete(carsId);
+        adapter.close();
         goHome();
     }
 
 
     private void goHome() {
-        db.close();
         Intent intent = new Intent(this, Main_SQLite.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
     public void saveData(View view) {
-        try {
-            ContentValues cv = new ContentValues();
-            cv.put(DataBaseHelper.COLUMN_CARS_NAME, nameBox.getText().toString());
+        String nameCar = nameBox.getText().toString();
+        String spedText = speedBox.getText().toString();
 
-            String speedValue = speedBox.getText().toString();
-            if (TextUtils.isDigitsOnly(speedValue)) {
-                cv.put(DataBaseHelper.COLUMN_CARS_SPEED, Integer.parseInt(speedValue));
-
-                if (userId > 0) {
-                    db.update(DataBaseHelper.TABLE_CARS, cv, DataBaseHelper.COLUMN_CARS_ID + "=" + userId, null);
-                } else {
-                    db.insert(DataBaseHelper.TABLE_CARS, null, cv);
-                }
-
-                goHome();
-            } else {
-                // Ошибка: COLUMN_CARS_SPEED не содержит числовые данные
-                Log.d("But", "Invalid value for COLUMN_CARS_SPEED");
-            }
-        } catch (Exception e) {
-            Log.d("But", String.valueOf(e));
+        // Проверка на пустое значение или некорректный формат года
+        if (spedText.isEmpty()) {
+            // Вывести сообщение об ошибке или выполнить необходимые действия
+            return; // Завершить метод без сохранения
         }
+
+        int speed;
+        try {
+            speed = Integer.parseInt(spedText);
+        } catch (NumberFormatException e) {
+            Log.d("Er", "Not int");
+            return; // Завершить метод без сохранения
+        }
+
+        Cars car = new Cars(carsId, nameCar, speed);
+
+        adapter.open();
+        if (carsId > 0) {
+            adapter.update(car);
+        } else {
+            adapter.insert(car);
+        }
+        adapter.close();
+        goHome();
+
+//        try {
+//            ContentValues cv = new ContentValues();
+//            cv.put(DataBaseHelper.COLUMN_CARS_NAME, nameBox.getText().toString());
+//
+//            String speedValue = speedBox.getText().toString();
+//            if (TextUtils.isDigitsOnly(speedValue)) {
+//                cv.put(DataBaseHelper.COLUMN_CARS_SPEED, Integer.parseInt(speedValue));
+//
+//                if (userId > 0) {
+//                    db.update(DataBaseHelper.TABLE_CARS, cv, DataBaseHelper.COLUMN_CARS_ID + "=" + userId, null);
+//                } else {
+//                    db.insert(DataBaseHelper.TABLE_CARS, null, cv);
+//                }
+//
+//                goHome();
+//            } else {
+//                // Ошибка: COLUMN_CARS_SPEED не содержит числовые данные
+//                Log.d("But", "Invalid value for COLUMN_CARS_SPEED");
+//            }
+//        } catch (Exception e) {
+//            Log.d("But", String.valueOf(e));
+//        }
+//    }
     }
 }

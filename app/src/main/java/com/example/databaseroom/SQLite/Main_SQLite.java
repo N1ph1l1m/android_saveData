@@ -63,7 +63,7 @@ public class Main_SQLite extends AppCompatActivity {
         DataBaseAdapter adapter = new DataBaseAdapter(this);
         adapter.open();
 
-        List<Cars> cars = adapter.getUsers();
+        List<Cars> cars = adapter.getCars();
 
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,cars);
         userList.setAdapter(arrayAdapter);
