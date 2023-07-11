@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.databaseroom.Model.DatabaseAdapter;
+import com.example.databaseroom.Model.User;
 import com.example.databaseroom.R;
 
 public class UserActivity extends AppCompatActivity {
@@ -22,10 +24,9 @@ public class UserActivity extends AppCompatActivity {
     Button delButton;
     Button saveButton;
 
-    DataBaseHelper sqlHelper;
-    SQLiteDatabase db;
-    Cursor userCursor;
-    long userId = 0;
+    private DataBaseAdapter adapter;
+
+     long carsId = 0;
 
 
     @Override
@@ -38,23 +39,26 @@ public class UserActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.saveButton);
         delButton = findViewById(R.id.deleteButton);
 
-        sqlHelper = new DataBaseHelper(this);
-        db = sqlHelper.open();
+        adapter = new DataBaseAdapter(this);
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            userId = extras.getLong("id");
+        if (extras != null) {
+            carsId = extras.getLong("id");
         }
-
-        if(userId > 0 ){
-            userCursor = db.rawQuery(" SELECT * FROM " + DataBaseHelper.TABLE_CARS + " WHERE " + DataBaseHelper.COLUMN_CARS_ID + "=?", new String[]{String.valueOf(userId)});
-            userCursor.moveToFirst();
-            nameBox.setText(userCursor.getString(1));
-            speedBox.setText(String.valueOf(userCursor.getInt(2)));
-            userCursor.close();
-        }else{
+        // если 0, то добавление
+        if (carsId > 0) {
+            // получаем элемент по id из бд
+            adapter.open();
+            Cars cars = adapter.getCar(carsId);
+            nameBox.setText(cars.getNameCar());
+            speedBox.setText(String.valueOf(cars.getSpeedCar()));
+            adapter.close();
+        } else {
+            // скрываем кнопку удаления
             delButton.setVisibility(View.GONE);
         }
+
+
     }
 
     public void delete(View view) {

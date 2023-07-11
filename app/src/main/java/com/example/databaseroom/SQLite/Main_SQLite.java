@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -21,9 +22,12 @@ import com.example.databaseroom.SQLite.DataBaseHelper;
 import com.example.databaseroom.SQLite.SimpleExample;
 import com.example.databaseroom.SQLite.UserActivity;
 
+import java.util.List;
+
 public class Main_SQLite extends AppCompatActivity {
 
     ListView userList;
+    ArrayAdapter<Cars> arrayAdapter;
     DataBaseHelper dataBaseHelper;
     SQLiteDatabase db;
     Cursor userCursor;
@@ -35,32 +39,39 @@ public class Main_SQLite extends AppCompatActivity {
         setContentView(R.layout.activity_main_sqlite);
 
         userList = findViewById(R.id.list);
+        dataBaseHelper = new DataBaseHelper(getApplicationContext());
+        dataBaseHelper.create_db();
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-                intent.putExtra("id", id);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Cars cars = arrayAdapter.getItem(position);
+                if(cars != null){
+                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+                }
+
             }
         });
 
-        dataBaseHelper = new DataBaseHelper(getApplicationContext());
-        dataBaseHelper.create_db();
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        db = dataBaseHelper.open();
+        DataBaseAdapter adapter = new DataBaseAdapter(this);
+        adapter.open();
 
-        userCursor = db.rawQuery(" SELECT * FROM  " + DataBaseHelper.TABLE_CARS , null);
-        String[] headers = new String[] {DataBaseHelper.COLUMN_CARS_NAME, DataBaseHelper.COLUMN_CARS_SPEED};
+        List<Cars> cars = adapter.getUsers();
 
-        userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
-                userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2},0);
-        userList.setAdapter(userAdapter);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,cars);
+        userList.setAdapter(arrayAdapter);
+        adapter.close();
+
+
     }
+
     public void addData(View view) {
        Intent intent = new Intent(this , UserActivity.class);
        startActivity(intent);
