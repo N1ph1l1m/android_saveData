@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,9 +61,18 @@ DataBaseHelper dataBaseHelper;
         }
     }
     public void saveData(View view){
+
+        String speedValue = speedBox.getText().toString().trim();
+
+// Проверка на пустое значение или некорректный формат
+        if (speedValue.isEmpty() || !speedValue.matches("\\d+")) {
+            // Вывести сообщение об ошибке или выполнить необходимые действия
+            return; // Завершить метод без сохранения
+        }
+
         ContentValues cv = new ContentValues();
         cv.put(DataBaseHelper.COLUMN_CARS_NAME, nameBox.getText().toString());
-        cv.put(DataBaseHelper.COLUMN_CARS_SPEED, Integer.parseInt(speedBox.getText().toString()));
+        cv.put(DataBaseHelper.COLUMN_CARS_SPEED, Integer.parseInt(speedValue));
 
         if (carsId > 0) {
             db.update(DataBaseHelper.TABLE_CARS, cv, DatabaseHelper.COLUMN_ID + "=" + carsId, null);
@@ -70,18 +80,34 @@ DataBaseHelper dataBaseHelper;
             db.insert(DataBaseHelper.TABLE_CARS, null, cv);
         }
         goHome();
-    }
-     private void goHome(){
-        db.close();
-        Intent intent = new Intent(this, SQLiteDatabase.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-    }
 
+//            ContentValues cv = new ContentValues();
+//            cv.put(DataBaseHelper.COLUMN_CARS_NAME, nameBox.getText().toString());
+//            cv.put(DataBaseHelper.COLUMN_CARS_SPEED, Integer.parseInt(speedBox.getText().toString()));
+//
+//            if (carsId > 0) {
+//                db.update(DataBaseHelper.TABLE_CARS, cv, DatabaseHelper.COLUMN_ID + "=" + carsId, null);
+//            } else {
+//                db.insert(DataBaseHelper.TABLE_CARS, null, cv);
+//            }
+//            goHome();
+//
+
+
+    }
 
     public void deleteData(View view) {
         db.delete(DataBaseHelper.TABLE_CARS, "_id = ?", new String[]{String.valueOf(carsId)});
         goHome();
 
     }
+     private void goHome(){
+        db.close();
+        Intent intent = new Intent(this, Main_SQLite.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+    }
+
+
+
 }

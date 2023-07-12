@@ -44,10 +44,7 @@
             android:label="Brain train" />
         <activity
             android:name=".BrainTrain.brainTrain"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".MainActivity" -->
-        <!-- android:exported="false" -->
-        <!-- android:label="Project data" /> -->
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
