@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="Delete"
             android:textColor="@color/black"
-            android:onClick="delete"
+            android:onClick="deleteData"
             android:backgroundTint="@color/white"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"

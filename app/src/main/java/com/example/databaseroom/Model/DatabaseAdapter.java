@@ -29,7 +29,7 @@ public class DatabaseAdapter {
     }
 
     private Cursor getAllEntries(){
-        String[] columns = new String[]{DatabaseHelper.COLUMN_ID,DatabaseHelper.COLUMN_NAME ,DatabaseHelper.COLUMN_YEAR};
+        String[] columns = new String[]{DatabaseHelper.COLUMN_ID, DatabaseHelper.COLUMN_NAME , DatabaseHelper.COLUMN_YEAR};
         return database.query(DatabaseHelper.TABLE,columns,null,null,null,null,null);
     }
 
@@ -47,12 +47,12 @@ public class DatabaseAdapter {
     }
 
     public long getCount(){
-        return DatabaseUtils.queryNumEntries(database,DatabaseHelper.TABLE);
+        return DatabaseUtils.queryNumEntries(database, DatabaseHelper.TABLE);
     }
 
     public User getUser(long id){
         User user = null;
-        String query = String.format("SELECT * FROM %s WHERE %s=?",DatabaseHelper.TABLE, DatabaseHelper.COLUMN_ID);
+        String query = String.format("SELECT * FROM %s WHERE %s=?", DatabaseHelper.TABLE, DatabaseHelper.COLUMN_ID);
         Cursor cursor = database.rawQuery(query, new String[]{ String.valueOf(id)});
         if(cursor.moveToFirst()){
           @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));

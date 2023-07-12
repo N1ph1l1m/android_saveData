@@ -1,6 +1,7 @@
 package com.example.databaseroom.SQLite;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -23,21 +24,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 //    public static final String COLUMN_YEAR = "year";
 
     private static String DB_PATH;
-    private static final String DB_NAME = "Cars.db";
+    private static final String DB_NAME = "Carsdata.db";
     private  static final int SCHEME_CARS = 1;
     public static final String TABLE_CARS = "cars";
 
     public  static final  String COLUMN_CARS_ID = "_id";
     public static final String COLUMN_CARS_NAME = "name";
     public static final String COLUMN_CARS_SPEED = "speed";
-    private  Context context;
+    private  Context mycontext;
 
 
 
 
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, SCHEME_CARS);
-        this.context = context;
+        this.mycontext = context;
         DB_PATH = context.getFilesDir().getPath() + DB_NAME;
     }
     @Override
@@ -56,7 +57,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         File file = new File(DB_PATH);
         if (!file.exists()) {
             //получаем локальную бд как поток
-            try(InputStream myInput = context.getAssets().open(DB_NAME);
+            try(InputStream myInput = mycontext.getAssets().open(DB_NAME);
                 // Открываем пустую бд
                 OutputStream myOutput = Files.newOutputStream(Paths.get(DB_PATH))) {
 
@@ -69,7 +70,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 myOutput.flush();
             }
             catch(IOException ex){
-                Log.d("ERR", ex.getMessage());
+                Log.d("Not_found_db", ex.getMessage());
             }
         }
     }
@@ -78,5 +79,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READWRITE);
     }
+
 
 }

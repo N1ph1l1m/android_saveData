@@ -7,14 +7,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.databaseroom.Model.DatabaseAdapter;
-import com.example.databaseroom.Model.User;
+import com.example.databaseroom.MainActivity;
+import com.example.databaseroom.Model.DatabaseHelper;
 import com.example.databaseroom.R;
 
 public class UserActivity extends AppCompatActivity {
@@ -24,9 +22,11 @@ public class UserActivity extends AppCompatActivity {
     Button delButton;
     Button saveButton;
 
-    private DataBaseAdapter adapter;
+DataBaseHelper dataBaseHelper;
+    SQLiteDatabase db;
+    Cursor carCursor;
 
-     long carsId = 0;
+    long carsId = 0;
 
 
     @Override
@@ -39,93 +39,49 @@ public class UserActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.saveButton);
         delButton = findViewById(R.id.deleteButton);
 
-        adapter = new DataBaseAdapter(this);
+        dataBaseHelper = new DataBaseHelper(this);
+        db = dataBaseHelper.open();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             carsId = extras.getLong("id");
         }
-        // если 0, то добавление
         if (carsId > 0) {
             // получаем элемент по id из бд
-            adapter.open();
-            Cars cars = adapter.getCar(carsId);
-            nameBox.setText(cars.getNameCar());
-            speedBox.setText(String.valueOf(cars.getSpeedCar()));
-            adapter.close();
+            carCursor = db.rawQuery("select * from " + DataBaseHelper.TABLE_CARS + " where " +
+                    DataBaseHelper.COLUMN_CARS_ID + "=?", new String[]{String.valueOf(carsId)});
+            carCursor.moveToFirst();
+            nameBox.setText(carCursor.getString(1));
+            speedBox.setText(String.valueOf(carCursor.getInt(2)));
+            carCursor.close();
         } else {
             // скрываем кнопку удаления
             delButton.setVisibility(View.GONE);
         }
-
-
     }
+    public void saveData(View view){
+        ContentValues cv = new ContentValues();
+        cv.put(DataBaseHelper.COLUMN_CARS_NAME, nameBox.getText().toString());
+        cv.put(DataBaseHelper.COLUMN_CARS_SPEED, Integer.parseInt(speedBox.getText().toString()));
 
-    public void delete(View view) {
-        adapter.open();
-        adapter.delete(carsId);
-        adapter.close();
+        if (carsId > 0) {
+            db.update(DataBaseHelper.TABLE_CARS, cv, DatabaseHelper.COLUMN_ID + "=" + carsId, null);
+        } else {
+            db.insert(DataBaseHelper.TABLE_CARS, null, cv);
+        }
         goHome();
     }
-
-
-    private void goHome() {
-        Intent intent = new Intent(this, Main_SQLite.class);
+     private void goHome(){
+        db.close();
+        Intent intent = new Intent(this, SQLiteDatabase.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
-    public void saveData(View view) {
-        String nameCar = nameBox.getText().toString();
-        String spedText = speedBox.getText().toString();
 
-        // Проверка на пустое значение или некорректный формат года
-        if (spedText.isEmpty()) {
-            // Вывести сообщение об ошибке или выполнить необходимые действия
-            return; // Завершить метод без сохранения
-        }
-
-        int speed;
-        try {
-            speed = Integer.parseInt(spedText);
-        } catch (NumberFormatException e) {
-            Log.d("Er", "Not int");
-            return; // Завершить метод без сохранения
-        }
-
-        Cars car = new Cars(carsId, nameCar, speed);
-
-        adapter.open();
-        if (carsId > 0) {
-            adapter.update(car);
-        } else {
-            adapter.insert(car);
-        }
-        adapter.close();
+    public void deleteData(View view) {
+        db.delete(DataBaseHelper.TABLE_CARS, "_id = ?", new String[]{String.valueOf(carsId)});
         goHome();
 
-//        try {
-//            ContentValues cv = new ContentValues();
-//            cv.put(DataBaseHelper.COLUMN_CARS_NAME, nameBox.getText().toString());
-//
-//            String speedValue = speedBox.getText().toString();
-//            if (TextUtils.isDigitsOnly(speedValue)) {
-//                cv.put(DataBaseHelper.COLUMN_CARS_SPEED, Integer.parseInt(speedValue));
-//
-//                if (userId > 0) {
-//                    db.update(DataBaseHelper.TABLE_CARS, cv, DataBaseHelper.COLUMN_CARS_ID + "=" + userId, null);
-//                } else {
-//                    db.insert(DataBaseHelper.TABLE_CARS, null, cv);
-//                }
-//
-//                goHome();
-//            } else {
-//                // Ошибка: COLUMN_CARS_SPEED не содержит числовые данные
-//                Log.d("But", "Invalid value for COLUMN_CARS_SPEED");
-//            }
-//        } catch (Exception e) {
-//            Log.d("But", String.valueOf(e));
-//        }
-//    }
     }
 }
