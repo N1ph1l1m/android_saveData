@@ -25,8 +25,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(" CREATE TABLE " + TABLE + "(" + COLUMN_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT, " + COLUMN_YEAR + " TEXT);");
 
-        db.execSQL(" INSERT INTO "+ TABLE +" (" + COLUMN_NAME
-                + ", " + COLUMN_YEAR  + ") VALUES ('Том Смит', 1981);");
+//        db.execSQL(" INSERT INTO "+ TABLE +" (" + COLUMN_NAME
+//                + ", " + COLUMN_YEAR  + ") VALUES ('Том Смит', 1981);");
 
     }
     @Override

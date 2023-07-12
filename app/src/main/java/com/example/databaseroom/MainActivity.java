@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.databaseroom.BrainTrain.StartBrain;
+import com.example.databaseroom.Files.FilesActivity;
 import com.example.databaseroom.Model.Model;
 import com.example.databaseroom.SQLite.Main_SQLite;
 
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+
+
 
     public void moveToShared(View view) {
         Intent intentShared = new Intent(MainActivity.this , SharedPreferences.class);
@@ -35,5 +39,10 @@ public class MainActivity extends AppCompatActivity {
     public void moveToModal(View view) {
         Intent intentSQLite = new Intent(MainActivity.this , Model.class);
         startActivity(intentSQLite);
+    }
+
+    public void moveToFileApp(View view) {
+        Intent moveToFileApp = new Intent(MainActivity.this , FilesActivity.class);
+        startActivity(moveToFileApp);
     }
 }
