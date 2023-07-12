@@ -15,6 +15,36 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read/Save"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginLeft="60dp"/>
+        <Button
+            android:id="@+id/fifo"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:onClick="moveToModal"
+            android:text="Files app"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DataBase"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="60dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            />
 
         <Button
             android:id="@+id/model"
@@ -25,7 +55,8 @@
             android:text="Model"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
         <Button
             android:id="@+id/brainTrain"
             android:layout_width="250dp"

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.DatabaseRoom"
         tools:targetApi="31">
         <activity
+            android:name=".Files.FilesActivity"
+            android:exported="false" />
+        <activity
             android:name=".Model.user_activity2"
             android:exported="false" />
         <activity
@@ -48,7 +51,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="DataBase"
+            android:label="Data"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
