@@ -9,27 +9,26 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
 
         <Button
             android:id="@+id/model"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
             android:onClick="moveToModal"
             android:text="Model"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginTop="250dp"
-            android:layout_marginLeft="162dp"
-            />
+            android:textStyle="bold" />
         <Button
             android:id="@+id/brainTrain"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
             android:onClick="moveToBrain"
@@ -37,13 +36,11 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="128dp"
-            />
+            android:layout_marginTop="20dp" />
 
         <Button
             android:id="@+id/sqlite"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
             android:onClick="moveSQLiteActivity"
@@ -51,14 +48,12 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="123dp"
-            />
+            android:layout_marginTop="20dp" />
 
 
         <Button
             android:id="@+id/sharedPref"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
             android:onClick="moveToShared"
@@ -66,9 +61,7 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="100dp"
-            />
+            android:layout_marginTop="20dp"/>
 
 
     </LinearLayout>
